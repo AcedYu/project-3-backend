@@ -19,6 +19,7 @@ User.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -34,10 +35,6 @@ User.init(
       validate: {
         len: [8],
       },
-    },
-    is_admin: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
     },
   },
   {

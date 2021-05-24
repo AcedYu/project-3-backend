@@ -9,7 +9,7 @@ User.hasMany(Post, {
   onDelete: 'CASCADE'
 });
 Post.belongsTo(User, {
-  foreignKey:'user_id'
+  foreignKey: 'user_id'
 });
 
 // User can have many comments
@@ -32,10 +32,15 @@ Comment.belongsTo(Post, {
 });
 
 // Users can belong to many users through the Followers model
-User.belongsToMany(User, {
-  through: 'followers',
-  foreignKey: 'user_id',
-  otherKey: 'follow_id'
-});
+User.belongsToMany(User,
+  {
+    as: 'following',
+    through: {
+      model: Followers
+    },
+    foreignKey: 'user_id',
+    otherKey: 'follow_id'
+  }
+);
 
-module.exports = { Post, User, Comment };
+module.exports = { Post, User, Comment, Followers };
