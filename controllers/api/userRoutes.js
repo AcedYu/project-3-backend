@@ -89,7 +89,16 @@ router.get('/follow', async (req, res) => {
       include: [
         {
           model: User,
+          attributes: ['name'],
           as: "following",
+          through: {
+            model: Followers,
+          },
+        },
+        {
+          model: User,
+          attributes: ['name'],
+          as: "followed_by",
           through: {
             model: Followers,
           },

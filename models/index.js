@@ -39,7 +39,20 @@ User.belongsToMany(User,
       model: Followers
     },
     foreignKey: 'user_id',
-    otherKey: 'follow_id'
+    otherKey: 'follow_id',
+    onDelete: 'CASCADE'
+  }
+);
+
+User.belongsToMany(User,
+  {
+    as: 'followed_by',
+    through: {
+      model: Followers
+    },
+    foreignKey: 'follow_id',
+    otherKey: 'user_id',
+    onDelete: 'CASCADE'
   }
 );
 
